@@ -1,0 +1,133 @@
+header{
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.logo{
+  color: var(--white-color);
+  font-size: 2.5rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.container{
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--dark-black);
+}
+.to-login{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white-color);
+}
+.to-login a{
+  color: var(--light-green);
+  text-decoration: none;
+}
+.to-login a:hover{
+  text-decoration: underline;
+}
+.register-form-container{
+  margin-top: 1.5rem;
+  width: 600px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid var(--light-green);
+}
+.register-form-container h1{
+  margin-bottom: 0;
+  color: var(--white-color);
+  font-size: 2rem;
+  font-weight: 700;
+}
+.register-form-container p{
+  margin-top: 0;
+  color: var(--dark-green);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.register-form{
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}
+.register-form label{
+  color: var(--white-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.register-form input{
+  background-color: transparent;
+  color: var(--white-color);
+  border-radius: 5px;
+  border: 1px solid var(--light-green);
+  height: 1.8rem;
+  font-size: 1rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  outline: none;
+  width: 100%;
+}
+.fullname-block{
+  display: flex;
+  justify-content: space-between;
+  column-gap: .5rem;
+}
+.input-block{
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}
+#sign-up{
+  margin-top: 1.2rem;
+  align-self: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 25%;
+  height: 2.4rem;
+  border-radius: 10px;
+  background-color: var(--dark-green);
+  border: 1px solid var(--light-green);
+}
+#sign-up:hover{
+  background-color: var(--light-green);
+}
+.container > p{
+  color: var(--white-color);
+  font-size: .8rem;
+  font-weight: 500;
+  width: 600px;
+}
+.container > p > a{
+  color: var(--light-green);
+}
+.successful-notification-block{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: 0  ;
+  width: 350px;
+  padding-left: 1rem; 
+  padding-right: 1rem;
+  background-color: var(--dark-green);
+  color: var(--white-color);
+  font-weight: 500;
+  font-size: 1.2rem;
+  display: none;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/font-color-media.css">
+  <link rel="stylesheet" href="../CSS/sign-up.css">
+  <script src="../JS/AccountSystem.js" defer></script>
+  <script src="../JS/functions.js" defer></script>
+  <script src="../JS/sign-up.js" defer></script>
+  <title>Pen-Pix</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="logo">Pen-Pix</span>
+      <p class="to-login">Already have an account? <a href="../HTML/sign-in-page.html">Sign in</a></p>
+    </header>
+    <div class="register-form-container">
+      <h1>Welcome to Pen-Pix</h1>
+      <p>Register now to experience potential</p>
+      <form action="#" class="register-form" id="register-form" method="post">
+        <div class="fullname-block">
+          <div class="input-block firstname-block">
+            <label for="firstname">First name:</label>
+            <input id="firstname" type="text" name="firstname" required autofocus >
+          </div>
+          <div class="input-block lastname-block">
+            <label for="lastname">Last name:</label>
+            <input id="lastname" type="text" name="lastname" required>
+          </div>
+        </div>
+        <div class="input-block email-block">
+          <label for="email">USC Email address: <span id="email-error-display"></span></label>
+          <input type="text" name="email-address" id="email" required title="Enter a valid address">
+        </div>
+        <div class="input-block username-block">
+          <label for="username">Username: <span id="username-error-display"></span></label>
+          <input id="username" type="text" name="username" required>
+        </div>
+        <div class="input-block password-block">
+          <label for="password">Password: <span id="password-error-display"></span></label>
+          <input id="password" type="password" name="password" required>
+        </div>
+        <div class="input-block confirm-password-block">
+          <label for="confirm-password">Confirm Password: <span id="confirm-password-error-display"></span></label>
+          <input id="confirm-password" type="password" name="confirm password" required>
+        </div>
+        <input id="sign-up" type="submit" name="Sign up" value="Sign up">
+      </form>
+    </div>
+    <p>By creating an account, you aggree to the <a href="#">Terms of Service</a>. For more information about the Pen-Pix application, see <a href="#">Pen-Pix About</a>. page</p>
+    <div class="successful-notification-block">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="30" stroke="white" stroke-width="2"/>
+        <path d="M26.6667 40L36.6667 50L53.3334 30" stroke="white" stroke-width="2"/>
+      </svg>
+      <p>Your account has been successfuly created</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.notification-block{
+  border-radius: 0;
+  background-color: var(--white-color);
+  width: 100%;
+  color: var(--dark-black);
+}
+.dashboard-block:hover, .account-block:hover, .help-block:hover{
+  width: 80%;
+  background-color:hsla(0, 0%, 85%, 0.5);
+}

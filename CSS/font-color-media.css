@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+  --dark-black: #222629;
+  --dark-grey: #474b4f;
+  --light-grey: #6b6e70;
+  --lighter-grey: #d9d9d9;
+  --white-color: #fff;
+  --dark-green: #61892f;
+  --light-green: #86c232; 
+}
+
+*, ::before, ::after{
+  box-sizing: border-box;
+  font-family: 'Genos', sans-serif;
+}
+body{
+  max-height: auto;
+  margin: 0;
+  max-width:100%;
+  scroll-behavior: smooth;
+}
+/*Phone*/
+/*Xs*/
+@media screen and (max-width: 475px){
+  .container{
+    max-width: 475px;
+  }
+  .top-container h1{
+    font-size: 2rem;
+  }
+  .bottom-container{
+    font-size: .8rem;
+  }
+  .sign-in-form, .to-sign-in-container{
+    max-width: 300px;
+  }
+  main{
+    max-width: 350px;
+  }
+  .create-new-task-container{
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 640px){
+ .container{
+  max-width: 640px;
+ }
+ .logo{
+  font-size: 1.5rem;
+}
+.sign-container{
+  column-gap: 0rem;
+}
+.select-sign-in, .select-sign-up{
+  font-size: .8rem;
+  padding: .3rem .8rem .3rem .8rem;
+}
+.to-login{
+  font-size: .8rem;
+}
+.top-container h1{
+  font-size: 3rem;
+}
+.catch-phrase{
+  font-size: 1.5rem;
+}
+.welcome-text{
+  font-size: .8rem;
+}
+.quick-to-sign-up-button{
+  font-size: 1rem;
+}
+.quick-explore{
+  font-size: 1rem;
+}
+.bottom-container{
+  font-size: 1rem;
+}
+}
+@media screen and (max-width: 767px){
+  .container{
+    max-width: 767px;
+   }
+  .logo{
+    font-size: 2rem;
+  }
+  .sign-container{
+    column-gap: 0.5rem;
+  }
+  .select-sign-in, .select-sign-up{
+    font-size: 1rem;
+    padding: .3rem .8rem .3rem .8rem;
+  }
+  .to-login{
+    font-size: 1rem;
+  }
+  .top-container h1{
+    font-size: 3.5rem;
+  }
+  .catch-phrase{
+    font-size: 2rem;
+  }
+  .welcome-text{
+    font-size: 1rem;
+  }
+  .quick-to-sign-up-button{
+    font-size: 1rem;
+  }
+  .quick-explore{
+    font-size: 1rem;
+  }
+  .bottom-container{
+    font-size: 1.5rem;
+  }
+
+  .register-form-container{
+    max-width: 400px;
+    max-height: auto;
+  }
+  .container > p{
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 1024px){
+  .container{
+    max-width: 1024px;
+   }
+
+}
+@media screen and (max-width: 1280px){
+  .container{
+    max-width: 1280px;
+   }
+}
+@media screen and (max-width: 1536px){
+  .container{
+    max-width: 1536px;
+   }
+}

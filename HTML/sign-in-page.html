@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/font-color-media.css">
+  <link rel="stylesheet" href="../CSS/sign-in.css">
+  <script src="../JS/AccountSystem.js" defer></script>
+  <script src="../JS/functions.js" defer></script>
+  <script src="../JS/sign-in.js" defer></script>
+  <title>Pen-Pix</title>
+</head>
+<body>
+  <div class="container wrapper">
+    <div class="sign-in-container">
+      <h1>Sign in to PEN-PIX</h1>
+      <p>Sign in and enjoy your teaching experience</p>
+      <form action="#" class="sign-in-form" name="sign-in-form" id="sign-in-form">
+        <div class="input-block username-email-block">
+          <label for="username-or-email">USC Email address or Username: <span id="username-email-error-display"></span></label>
+          <input type="text" name="username-or-email" id="username-or-email" required autofocus >
+        </div>
+        <div class="password-block">
+          <label for="login-password">Password: <span id="login-password-error-display"></span></label>
+          <a href="../HTML/forgot-password.html">Forgot password?</a>
+        </div>
+        <input type="password" name="password" id="login-password" required>
+        <input type="submit" name="sign-in" id="sign-in" value="Sign in">
+      </form>
+    </div>
+    <div class="to-sign-in-container">
+      <div class="remember-me-block">
+        <input type="checkbox" id="remember-me" name=" remember Me" value="1" form="sign-in-form">
+        <label for="remember-me">Remember me?</label>
+      </div>
+      <p>New to Pen-Pix? <a href="../HTML/sign-up-page.html">Create an account</a></p>
+    </div>
+    <ul class="more-container">
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">Contact Pen-Pix Support</a></li>
+    </ul>
+    <div class="successful-notification-block">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="30" stroke="white" stroke-width="2"/>
+        <path d="M26.6667 40L36.6667 50L53.3334 30" stroke="white" stroke-width="2"/>
+      </svg>
+      <p>You are now logged in</p>
+    </div>
+  </div>
+</body>
+</html>

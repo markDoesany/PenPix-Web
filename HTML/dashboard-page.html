@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/font-color-media.css">
+  <link rel="stylesheet" href="../CSS/side-bar-header.css">
+  <link rel="stylesheet" href="../CSS/dashboard.css">
+  <script src="../JS/TaskManagement.js" defer></script>
+  <script src="../JS/functions.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js" defer></script>
+  <script src="../JS/dashboard.js" defer></script>
+  <title>Pen-Pix</title>
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <header>
+      <h2>Tasks</h2>
+      <div class="user-quick-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 65 65" fill="none">
+          <circle cx="32.5" cy="27.0834" r="8.125" stroke="#222629" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="32.5" cy="32.5" r="24.375" stroke="#222629" stroke-width="2"/>
+          <path d="M48.1556 50.9882C48.4999 50.7992 48.6627 50.3899 48.5171 50.0251C47.4728 47.408 45.4609 45.1031 42.7413 43.4233C39.8033 41.6086 36.2034 40.625 32.5 40.625C28.7966 40.625 25.1967 41.6086 22.2587 43.4233C19.5391 45.1031 17.5272 47.408 16.4829 50.0251C16.3373 50.3899 16.5001 50.7991 16.8444 50.9882V50.9882C26.595 56.3414 38.405 56.3414 48.1556 50.9882V50.9882Z" fill="#222629"/>
+        </svg>
+        <div class="username-profession-block">
+          <p id="username">Mark Teofel Cernal</p>
+          <p id="profession">BS Sugar Daddy</p>
+        </div>
+        <svg id="user-quick-account" xmlns="http://www.w3.org/2000/svg" width="15" height="8" viewBox="0 0 10 6" fill="none">
+          <path d="M4.80794 5.76953L1.09346 1.31215C0.659238 0.791085 1.02976 -4.31825e-07 1.70803 -4.02177e-07L8.29197 -1.14384e-07C8.97024 -8.47357e-08 9.34076 0.791085 8.90654 1.31215L5.19206 5.76953C5.09211 5.88947 4.90789 5.88947 4.80794 5.76953Z" fill="#222222"/>
+        </svg>
+          <ul class="user-quick-account-option">
+            <li><a id="log-out" href="../HTML/landing-page.html">Log-out</a></li>
+            <li><a href="../HTML/sign-in-page.html">Change Account</a></li>
+          </ul>
+      </div>
+    </header>
+    <hr>
+    <nav class="side-menu-nav">
+      <a href="../HTML/dashboard-page.html" class="dashboard-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 42 39" fill="none">
+          <rect x="1" y="1" width="15" height="13.875" rx="1" stroke="#222629" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="1" y="24.125" width="15" height="13.875" rx="1" stroke="#222629" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="26" y="24.125" width="15" height="13.875" rx="1" stroke="#222629" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="26" y="1" width="15" height="13.875" rx="1" stroke="#222629" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <label for="">Dashboard</label>
+      </a>
+      <a href="../HTML/account-page.html" class="account-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 36 37" fill="none">
+          <ellipse cx="18" cy="9.25" rx="10" ry="9.25" fill="white"/>
+          <path d="M3.467 24.7808C4.59412 22.247 7.18815 20.8125 9.96133 20.8125H26.0387C28.8119 20.8125 31.4059 22.247 32.533 24.7808C33.8161 27.6651 35.2693 31.7874 35.4752 36.0003C35.5022 36.5519 35.0523 37 34.5 37H1.5C0.947715 37 0.497792 36.5519 0.524758 36.0003C0.730704 31.7874 2.18393 27.6651 3.467 24.7808Z" fill="white"/>
+        </svg>  
+        <label for="">Account</label>
+      </a>
+      <a href="../HTML/notification-page.html" class="notification-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 39" fill="none">
+          <path d="M16.422 36.707C16.6499 36.9141 17.1521 37.097 17.8507 37.2275C18.5492 37.358 19.4052 37.4287 20.2857 37.4287C21.1662 37.4287 22.0222 37.358 22.7208 37.2275C23.4193 37.097 23.9215 36.9141 24.1494 36.707" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9.26405 10.3764C9.53089 7.77825 9.66431 6.47919 10.0917 5.42434C11.0119 3.15346 12.922 1.42949 15.275 0.746137C16.368 0.428711 17.6739 0.428711 20.2857 0.428711V0.428711C22.8975 0.428711 24.2034 0.428711 25.2964 0.746137C27.6494 1.42949 29.5595 3.15346 30.4797 5.42434C30.9071 6.47919 31.0405 7.77825 31.3074 10.3764L31.87 15.855C32.0768 17.8681 32.1802 18.8747 32.5248 19.8148C32.8694 20.7548 33.441 21.5897 34.5843 23.2596L38.1427 28.4567C39.0842 29.8318 39.555 30.5194 39.2737 31.053C38.9923 31.5866 38.159 31.5866 36.4925 31.5866H4.07895C2.41238 31.5866 1.5791 31.5866 1.29775 31.053C1.01641 30.5194 1.48717 29.8318 2.4287 28.4567L5.9871 23.2596C7.1304 21.5897 7.70205 20.7548 8.04665 19.8148C8.39125 18.8747 8.49463 17.8681 8.70138 15.855L9.26405 10.3764Z" fill="white"/>
+        </svg>
+        <label for="">Notification</label>
+      </a>
+      <a href="../HTML/help-page.html" class="help-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 38" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M40.2143 19C40.2143 29.2173 31.26 37.5 20.2143 37.5C9.1686 37.5 0.214294 29.2173 0.214294 19C0.214294 8.78273 9.1686 0.5 20.2143 0.5C31.26 0.5 40.2143 8.78273 40.2143 19ZM22.4365 31.3333C22.4365 32.4686 21.4416 33.3889 20.2143 33.3889C18.987 33.3889 17.9921 32.4686 17.9921 31.3333C17.9921 30.1981 18.987 29.2778 20.2143 29.2778C21.4416 29.2778 22.4365 30.1981 22.4365 31.3333ZM19.7143 5.66667C15.7562 5.66667 12.5476 8.87529 12.5476 12.8333H14.5476C14.5476 9.97986 16.8608 7.66667 19.7143 7.66667H20.9678C23.6812 7.66667 25.8809 9.86636 25.8809 12.5798V13.4563C25.8809 15.0911 24.8152 16.5349 23.253 17.0166C20.8521 17.7569 19.2143 19.9758 19.2143 22.4882V27.2222H21.2143V22.4882C21.2143 20.8534 22.28 19.4095 23.8423 18.9278C26.2431 18.1876 27.8809 15.9687 27.8809 13.4563V12.5798C27.8809 8.76179 24.7858 5.66667 20.9678 5.66667H19.7143Z" fill="white"/>
+        </svg>
+        <label for="">Help</label>
+      </a>
+    </nav>
+    <main>
+      <div class="task-container">
+        <div class="new-add-task">
+          <h1>Add Task +</h1>
+        </div>
+      </div>
+      <div class="create-new-task-container">
+        <svg id="back-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="#33363F"/>
+        </svg>
+        <h1>Create New Task</h1>
+        <div class="task-info-block">
+          <div class="title-block">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" maxlength="20">
+          </div>  
+          <div class="description-block">
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description">
+          </div>
+          <div class="due-date-block">
+            <label for="due-date">Set Due Date:</label>
+            <input type="date" name="date" id="due-date">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="file-block">
+          <h2>Add Files</h2>
+          <div class="files-container">
+            <!-- Files here use JS-->
+          </div>
+          <div class="add-file-folder-block">
+            <div class="file-folder-section">
+              <div class="add-file">
+                <svg id="add-input-file" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3.33325 0.166626C1.6764 0.166626 0.333252 1.50978 0.333252 3.16663V38.8333C0.333252 40.4901 1.6764 41.8333 3.33325 41.8333H24.3333V31.4166L24.3333 31.3456C24.3332 29.9329 24.3332 28.7722 24.4566 27.8544C24.5859 26.8925 24.867 26.0492 25.5414 25.3748C26.2159 24.7004 27.0592 24.4193 28.021 24.29C28.9388 24.1666 30.0996 24.1666 31.5123 24.1666H31.5833H41.9999V3.16663C41.9999 1.50977 40.6568 0.166626 38.9999 0.166626H3.33325ZM41.9957 26.1666H31.5833C30.0818 26.1666 29.0564 26.1687 28.2875 26.2721C27.5474 26.3716 27.1965 26.5481 26.9557 26.789C26.7148 27.0299 26.5382 27.3808 26.4387 28.1209C26.3354 28.8898 26.3333 29.9152 26.3333 31.4166V41.8291C27.0709 41.7899 27.7703 41.4796 28.2953 40.9546L41.1212 28.1286C41.6462 27.6037 41.9565 26.9042 41.9957 26.1666Z" fill="#222629"/>
+                </svg>
+                <input type="file" id="add-file" style="display: none;" accept=".png, .jgpg, .jpeg, .pdf" multiple>
+                <label for="add-input-file">Add File +</label>
+              </div>  
+              <div class="add-folder">
+                <svg id="add-input-folder" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.49993 4C7.49993 2.11438 7.49993 1.17157 8.08571 0.585786C8.6715 0 9.61431 0 11.4999 0H33.4999C35.3855 0 36.3284 0 36.9141 0.585786C37.4999 1.17157 37.4999 2.11438 37.4999 4V19H28.3285C28.0633 19 27.809 18.8947 27.6214 18.7071L21.293 12.3787C20.7304 11.8161 19.9673 11.5 19.1717 11.5H7.49993V4ZM7.49993 13.5V15H4C2.11438 15 1.17157 15 0.585786 15.5858C0 16.1715 0 17.1143 0 19V22.5V41.8C0 42.9201 0 43.4801 0.217987 43.9079C0.409734 44.2843 0.715695 44.5902 1.09202 44.782C1.51984 45 2.0799 45 3.2 45H41.8C42.9201 45 43.4802 45 43.908 44.782C44.2843 44.5902 44.5903 44.2843 44.782 43.9079C45 43.4801 45 42.9201 45 41.8V25.7C45 24.5799 45 24.0198 44.782 23.592C44.5903 23.2157 44.2843 22.9097 43.908 22.718C43.4802 22.5 42.9201 22.5 41.8 22.5H37.4999V21H28.3285C27.5329 21 26.7698 20.684 26.2072 20.1213L19.8788 13.7929C19.6912 13.6054 19.4369 13.5 19.1717 13.5H7.49993Z" fill="#222629"/>
+                </svg>
+                <input type="file" id="add-folder" style="display:none;" accept=".zip">
+                <label for="add-input-folder">Add Folder +</label>
+              </div>
+            </div>
+            <button id="save-button">Save</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

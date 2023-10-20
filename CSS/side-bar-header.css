@@ -1,0 +1,97 @@
+header{
+  position: relative;
+  padding-top: 0;
+  padding-left: 110px;
+  padding-right: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.user-quick-menu{
+  display: flex;
+  align-items: center;
+  margin-top: .2rem;
+}
+.username-profession-block{
+  display: flex;
+  flex-direction: column;
+  margin-right: .5rem;
+}
+.user-quick-menu #username{
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}
+.user-quick-menu #profession{
+  font-size: .8rem;
+  padding: 0;
+  margin: 0;
+}
+.user-quick-menu svg:nth-child(3):hover{
+  cursor: pointer;
+  scale: 1.2;
+}
+.user-quick-account-option{
+  position: absolute;
+  z-index: 2;
+  top: 4.5rem;
+  right: 1.5rem;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  background-color: var(--lighter-grey);
+  border-radius: 3px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+.user-quick-account-option a{
+  width: 100%;
+  color: var(--dark-black);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: .2rem .5rem .2rem .5rem;
+}
+.user-quick-account-option a:hover {
+  color: var(--light-green);
+}
+
+hr{
+  width: 91%;
+  margin-left: 110px;
+}
+h2{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 300;
+  font-size: 3rem;
+}
+.side-menu-nav{
+  position: fixed;
+  width: 100px;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+  background-color: #222629;
+}
+.side-menu-nav a{
+  text-decoration: none;
+}
+.dashboard-block, .account-block, .notification-block, .help-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: .8rem;
+  color: var(--white-color);  
+  cursor: pointer;
+}
+
