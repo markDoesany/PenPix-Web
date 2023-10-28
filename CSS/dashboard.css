@@ -45,6 +45,7 @@ main{
   border: 1px solid var(--dark-black);
   border-radius: 10px;
   z-index: 99;
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,7 +163,6 @@ main{
 .file-display-child:hover{
   background-color: var(--dark-grey);
 }
-
 .file-display-child .filename{
   margin-left: 0;
   font-weight: 600;
@@ -180,7 +180,7 @@ main{
   flex-wrap: wrap;
   column-gap: 3rem;
   row-gap: 2.2rem;
-  margin-left: 3rem;
+  margin-left: 1rem;
 }
 .task-card{
   position: relative;
@@ -199,7 +199,6 @@ main{
   box-shadow: 3px 3px 5px 0 var(--light-grey);
   z-index: 1;
 }
-
 .task-card .meatballs-menu{
   width: 30px;
   height: 30px;

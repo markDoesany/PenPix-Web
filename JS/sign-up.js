@@ -10,7 +10,7 @@ const registerForm = document.getElementById('register-form');
 
 
 //When logo is clicked. It will go back to the landing page
-document.querySelector('.logo').addEventListener('click',()=> window.location.href = '../HTML/landing-page.html');
+document.querySelector('.logo').addEventListener('click',()=> window.location.href = '../HTML/index.html');
 
 //clear input fields
 clearInputField()

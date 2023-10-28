@@ -107,5 +107,45 @@ function updateLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+function truncateText(string){
+  if(string === undefined) return;
+  //the maximum length of characters
+  const maxlength = 25;
+  //gets the length of the argument and loops through it until a specified max length
+  if (string.length > maxlength) {
+    //return the truncated string
+    return string.substring(0, maxlength) + "...";
+  } else {
+    //if the string is less than 25 character, it can be displayed in the task card without being truncated
+    return string;
+  }
+}
 
+function convertDateToNumericFormat(inputDate) {
+  const date = new Date(inputDate);
+  if (isNaN(date)) {
+    return "Invalid Date";
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function convertDateToStringFormat(dateString){
+  //get the date set by the user
+  const due_dateTemplate = new Date(dateString); //Get the input due date
+  const option = {year: 'numeric', month: 'long', day: 'numeric'}; //format option 
+
+  //a variable that will contain the formatted date
+  let due_formattedDate;
+
+  //isNan is used to check if a variable is a number. It returns true is yes. Since the condition is inverted, the condition is true of the NaN is false. It verifies the date as a string 
+  if(!isNaN(due_dateTemplate)){
+    //convert the string to numeric format.
+    return due_formattedDate = due_dateTemplate.toLocaleDateString(undefined, option); 
+  }else return due_formattedDate = '';
+}
 

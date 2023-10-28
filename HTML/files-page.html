@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/font-color-media.css">
+  <link rel="stylesheet" href="../CSS/files.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js" defer></script>
+  <script src="../JS/functions.js" defer></script>
+  <script src="../JS/files.js" defer></script>
+  <title>Pen-Pix/Files</title>
+</head>
+<body>
+
+  <div class="file-wrapper">
+    
+    <header class="files-page-header">
+      <nav>
+        <ul>
+          <li><a href="../HTML/dashboard-page.html">Dashboard</a></li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 28 40" fill="none">
+            <path d="M16 1L26 11L16 21" stroke="white" stroke-width="2"/>
+          </svg>
+          <li><a href="#" class="task-title">Task Title</a></li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 28 40" fill="none">
+            <path d="M16 1L26 11L16 21" stroke="white" stroke-width="2"/>
+          </svg>
+          <li><a href="#">File Manager</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Files</h1>
+      <div class="table-column-header">
+        <p>Filename</p>
+        <p>Status</p>
+        <p>Score</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="1" transform="rotate(-90 12 12)" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="18" r="1" transform="rotate(-90 12 18)" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="6" r="1" transform="rotate(-90 12 6)" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <ul class="file-menu-container">
+          <li class="sort-by-status">Sort by status</li>
+          <li class="sort-by-name">Sort by name</li>
+          <li  class="sort-by-grade">Sort by grade</li>
+          <li class="remove-all-files">Remove All Files</li>
+        </ul>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="files-block"></div>
+    </main>
+
+    <div class="confirm-files-removal">
+      <h5>Just Checking...</h5>
+      <hr>
+      <label>Remove all files?</label>
+      <p>The action is final and irreversable. All the files here will be removed</p>
+      <div class="prompt-buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+      </div>
+    </div>
+
+    <aside>
+      <a href="#">Open to AI Tools</a>
+      <div class="display-task-info-block">
+        <div class="date-created-block">
+          <label for="date-created">Date created: <span id="display-date-created"></span></label>
+          <input type="date" name="date-created" id="date-created"> 
+        </div>
+        <div class="date-due-block">
+          <label for="date-due">Date due: <span id="display-date-due"></span></label>
+          <input type="date" name="due-date" id="date-due">
+        </div>
+        <div class="description-block">
+          <label for="description">Description:</label>
+          <textarea name="description" rows="3" cols="30" id="description" readonly></textarea>
+        </div>
+        <button id="edit-to-save">Edit</button>
+      </div>
+      <div class="add-buttons-container">
+        <button id="add-input-file">Add File <input id="add-file" type="file" multiple style="display: none;" accept=".jpg, .png, .pdf"></button>
+        <button id="add-input-folder">Add Folder <input id="add-folder" type="file" multiple style="display: none;" accept=".zip"></button>
+      </div>
+      <div class="set-grade-score-block">
+        <div class="set-high-score">
+          <label for="set-high-score">Set the highest score:</label>
+          <input id="set-high-score" type="text" pattern="[0-9]*" title="Please enter only numeric values" maxlength="3" value="0">
+        </div>
+        <div class="set-all-grade">
+          <label for="set-all-grade">Set grade for all:</label>
+          <input id="set-all-grade" type="text" pattern="[0-9]*" title="Please enter only numeric values" value="0">
+        </div>
+      </div>
+      <button class="export-grade-book-button">Export Grade Book
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0508 6H23C24.1046 6 25 6.89543 25 8C25 9.10457 24.1046 10 23 10H21V11H23C24.1046 11 25 11.8954 25 13C25 14.1046 24.1046 15 23 15H21V16H23C24.1046 16 25 16.8954 25 18C25 19.1046 24.1046 20 23 20H21.2925C21.3687 20.1568 21.4647 20.2931 21.5858 20.4142C22.1716 21 23.1144 21 25 21H30C31.8857 21 32.8285 21 33.4143 20.4142C34 19.8284 34 18.8856 34 17V8C34 6.11438 34 5.17157 33.4143 4.58579C32.8285 4 31.8857 4 30 4H25C23.1144 4 22.1716 4 21.5858 4.58579C21.2592 4.91238 21.1147 5.34994 21.0508 6ZM30 11C29.4477 11 29 10.5523 29 10V8C29 7.44772 29.4477 7 30 7C30.5523 7 31 7.44772 31 8V10C31 10.5523 30.5523 11 30 11ZM19 7C18.4477 7 18 7.44772 18 8C18 8.55228 18.4477 9 19 9H23C23.5523 9 24 8.55228 24 8C24 7.44772 23.5523 7 23 7H19ZM19 12C18.4477 12 18 12.4477 18 13C18 13.5523 18.4477 14 19 14H23C23.5523 14 24 13.5523 24 13C24 12.4477 23.5523 12 23 12H19ZM19 17C18.4477 17 18 17.4477 18 18C18 18.5523 18.4477 19 19 19H23C23.5523 19 24 18.5523 24 18C24 17.4477 23.5523 17 23 17H19Z" fill="white"/>
+        </svg>
+      </button>
+    </aside>
+  </div>
+</body>
+</html>

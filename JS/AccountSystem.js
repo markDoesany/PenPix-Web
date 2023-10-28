@@ -7,8 +7,7 @@ class AccountSystem{
     this._password = null;
     this._profession = null;
     this._ID = null;
-    this._taskManagement = null;
-    this._notification = null;
+    this._taskManagement = [];
   }
   getPersonalInfo(){
     return {

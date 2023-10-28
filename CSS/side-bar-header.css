@@ -1,7 +1,7 @@
 header{
   position: relative;
   padding-top: 0;
-  padding-left: 110px;
+  padding-left: 98px;
   padding-right: 30px;
   display: flex;
   justify-content: space-between;
@@ -56,10 +56,9 @@ header{
 .user-quick-account-option a:hover {
   color: var(--light-green);
 }
-
 hr{
-  width: 91%;
-  margin-left: 110px;
+  width: 92%;
+  margin-left: 95px;
 }
 h2{
   margin-top: 0;
@@ -69,8 +68,8 @@ h2{
 }
 .side-menu-nav{
   position: fixed;
-  width: 100px;
-  height: 100vh;
+  width: 80px;
+  height: 100%;
   top: 0;
   display: flex;
   flex-direction: column;

@@ -39,12 +39,15 @@ logOut.addEventListener('click', ()=>{
 newAddTask.addEventListener('click', (event)=> {
   //prevent the event from propagating to other event listeners
   event.stopPropagation();
+
   //checks if a create new task has been opened already. If so, return to prevent the proceeding code to execute
   if(newTaskWindowOpen) return;
   localStorage.removeItem('files');
   newTaskWindowOpen = true;
   createTaskContainer.style.display = 'flex'; //display the create task container
+  setBlurBackground();
 })
+
 
 //Activates when the back button in the add task form is selected
 back.addEventListener('click', ()=> {
@@ -53,6 +56,7 @@ back.addEventListener('click', ()=> {
   localStorage.removeItem('files');
   filesContainer.textContent = '';
   clearInputField();
+  removeBlurBackground();
 })
 
 //Saves the user inputs 
@@ -62,7 +66,7 @@ save.addEventListener('click', ()=>{
 
   newTaskWindowOpen = false;
   createTaskContainer.style.display = 'none';
-
+  
   //declare and initialized input fields
   const title = document.getElementById('title').value;
   const description = document.getElementById('description').value;
@@ -80,8 +84,18 @@ save.addEventListener('click', ()=>{
   updateStorage()
   clearInputField();
   displayTasks();
+  removeBlurBackground();
 })
-
+function setBlurBackground(){
+  document.querySelector('header').style.filter = "blur(1px)";
+  document.querySelector('nav').style.filter = "blur(1px)";
+  document.querySelector('.task-container').style.filter = "blur(1px)";
+}
+function removeBlurBackground(){
+  document.querySelector('header').style.filter = "none";
+  document.querySelector('nav').style.filter = "none";
+  document.querySelector('.task-container').style.filter = "none";
+}
 // Function to create a new task object
 function createTask(title, description, currentDate, dueDate, files) {
   const newTask = new TaskManagement();
@@ -95,13 +109,14 @@ function clearFileData() {
   filesContainer.textContent = '';
 }
 
+
 //activates when user selects the add file icon
 addInputFile.addEventListener('click', () => {
   //get the input field ID that was intentionally hidden 
   const fileInput = document.getElementById('add-file');
   //activate the input file type
   fileInput.click();
-
+  
   //detects once user browse and selected a file
   fileInput.addEventListener('change', handleFileSelection);
 });
@@ -123,7 +138,8 @@ function handleFileSelection(event){
             name: selectedFile.name,
             content: URL.createObjectURL(blob),
             status: false,
-            fileGrade: null
+            fileGrade: 0,
+            highScore: 0
           };
           //add the file object to the list of files
           files.push(fileObject);
@@ -137,15 +153,15 @@ function handleFileSelection(event){
   } catch (filesError) {
     console.error('Error processing selected files:', filesError); //displays an error to console if error occurs during the process
   }
-   // Remove the 'change' event listener to prevent memory leaks if no longer needed.
-   event.target.removeEventListener('change', handleFileSelection);
+  // Remove the 'change' event listener to prevent memory leaks if no longer needed.
+  event.target.removeEventListener('change', handleFileSelection);
 }
 
 //activates when the user selected the add folder icon
 addInputFolder.addEventListener('click', () => {
   const folderInput = document.getElementById('add-folder');
   folderInput.click(); // Trigger the folder input element
-
+  
   //triggers when a folder upload is detected
   folderInput.addEventListener('change', handleZipFile);
 });
@@ -166,10 +182,10 @@ async function handleZipFile(event){
     } catch (error) {
       console.error('Error unzipping or filtering files:', error);
     }
-  //remove the event listener change to prevent unecesarry behavior
-  event.target.removeEventListener('change', handleZipFile);
-}
-
+    //remove the event listener change to prevent unecesarry behavior
+    event.target.removeEventListener('change', handleZipFile);
+  }
+  
 //aysnchronous function that faciliates the unzipping of files and blobbing
 async function unzipAndFilterFiles(zipFile) {
   const zip = new JSZip();
@@ -180,11 +196,11 @@ async function unzipAndFilterFiles(zipFile) {
       //get the blob content for each file
       const zipFileData = await getBlobFromFile(zipFile);
       const unzipped = await zip.loadAsync(zipFileData);
-
+      
       //get the filtered files after the folder is unzipped
       const filteredFiles = await processUnzippedFiles(unzipped);
       resolve(filteredFiles);
-
+      
     } catch (error) {
       reject(error);
     }
@@ -204,20 +220,21 @@ async function processUnzippedFiles(unzipped) {
         name: zipEntry.name,
         content: URL.createObjectURL(content),
         status: false,
-        fileGrade: null 
+        fileGrade: 0, 
+        highScore: 0
       };
-
+      
       // Add the file object to the array and update the local storage
       filteredFiles.push(fileObject);
       updateLocalStorage('files', filteredFiles)
-
+      
       // Display the file (if applicable)
       displayFile();
     } else {
       console.log('No valid file type is detected');
     }
   });
-
+  
   return filteredFiles;
 }
 
@@ -231,7 +248,7 @@ function getBlobFromFile(file) {
   return new Promise((resolve, reject) => {
     // Create a new FileReader
     const reader = new FileReader();
-
+    
     // Event handler for when the reading is successful
     reader.onload = (event) => {
       // Resolve the Promise with the result
@@ -248,12 +265,11 @@ function getBlobFromFile(file) {
     reader.readAsArrayBuffer(file);
   });
 }
-
 //Display the tasks created by the users in the dashboard
 function displayTasks(){
   //task card
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
+  
   //Remove the children of the task container except fot the add new task child
   while (taskContainer.childElementCount > 1) {
     taskContainer.removeChild(taskContainer.firstElementChild);
@@ -271,30 +287,30 @@ function displayTasks(){
     <circle cx="2.5" cy="18.5" r="2.5" fill="#D9D9D9"/>
     </svg>
     <div class = "menu-container">
-      <li class = "edit">Edit</li>
-      <li class = "delete">Delete</li>
+    <li class = "edit">Edit</li>
+    <li class = "delete">Delete</li>
     </div>
     <h1>${truncateText(task._title)}</h1>
     <p class = "task-description">${truncateText(task._description)}</p>
-    <p class = "date-created">Date created: ${task._dateCreated}</p>
+    <p class = "date-created">Date created: ${convertDateToStringFormat(task._dateCreated)}</p>
     <p class = "date-due">Date due: ${convertDateToStringFormat(task._dateDue)}</p>
     <p class = "status">Status: ${task._progress}</p>
-
+    
     <div class="edit-new-task-container">
-        <svg id="back-edit-button" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="#33363F"/>
-        </svg>
-        <h1>Edit Task</h1>
-        <div class="edit-task-info-block">
-          <div class="edit-title-block">
-            <label for="edit-title">Title:</label>
-            <input type="text" name="title" id="edit-title" maxlength="20" value = "${task._title}">
-          </div>  
-          <div class="edit-description-block">
-            <label for="edit-description">Description:</label>
-            <input type="text" name="description" id="edit-description" value = ${task._description}>
-          </div>
-          <div class="edit-due-date-block">
+    <svg id="back-edit-button" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="#33363F"/>
+    </svg>
+    <h1>Edit Task</h1>
+    <div class="edit-task-info-block">
+    <div class="edit-title-block">
+    <label for="edit-title">Title:</label>
+    <input type="text" name="title" id="edit-title" maxlength="20" value = "${task._title}">
+    </div>  
+    <div class="edit-description-block">
+    <label for="edit-description">Description:</label>
+            <input type="text" name="description" id="edit-description" value = "${task._description}">
+            </div>
+            <div class="edit-due-date-block">
             <label for="edit-due-date">Set Due Date:</label>
             <input type="date" name="date" id="edit-due-date" value = "${task._dateDue}">
           </div>
@@ -303,16 +319,17 @@ function displayTasks(){
         <div class="edit-file-block">
           <h2>Recent Files</h2>
           <div class="files-container">
-            <a href = "#"><p id = 'check-files'>Check Files</p></a>
+          <p id = 'check-files'>Check Files</p>
           </div>
           <div class="edit-add-file-folder-block">
-            <button id="edit-save-button">Save</button>
+          <button id="edit-save-button">Save</button>
           </div>
-        </div>
-      </div>
-    `
+          </div>
+          </div>
+          `
     taskContainer.prepend(taskDisplayTag); //pre append the html above to the parent class. Each new task will be the first child of the parent class
 })
+
 }
 
 // Attach a click event listener to the task container and handle task clicks
@@ -321,18 +338,18 @@ taskContainer.addEventListener('click', handleTaskClick);
 function handleTaskClick(event) {
   // Parse tasks from local storage
   const tasks = JSON.parse(localStorage.getItem('tasks'));
-
+  
   // Find the clicked elements
   const card = event.target.closest('.task-card');
   const menuContainer = event.target.closest('.menu-container');
   const deleteSelected = event.target.closest('.delete');
   const editSelected = event.target.closest('.edit');
-
+  
   if (card && !menuContainer) {
     // Handle click on a task card
     handleCardClick(card);
   }
-
+  
   if (menuContainer) {
     if (deleteSelected) {
       // Handle delete action
@@ -352,19 +369,19 @@ function handleCardClick(card) {
   updateLocalStorage('taskIndex', index);
 
   // Redirect to the index page
-  window.location.href = "../HTML/index.html";
+  window.location.href = "../HTML/ai-tool-page.html";
 }
 
 function handleDeleteClick(deleteSelected, tasks) {
   // Find the task index associated with the delete button
   const index = deleteSelected.closest('.task-card').dataset.index;
-
+  
   // Remove the task at the specified index from the tasks array
   tasks.splice(index, 1);
-
+  
   // Update local storage with the modified tasks array
   updateLocalStorage('tasks', tasks);
-
+  
   // Update the UI and display the updated tasks
   updateStorage();
   displayTasks();
@@ -381,10 +398,10 @@ function handleEditClick(editSelected) {
   if (openEditContainer && openEditContainer !== editTaskContainer) {
     openEditContainer.style.display = 'none';
   }
-
+  
   // Handle the edit task logic (not shown, should be in the editTask function)
   editTask(editSelected);
-
+  
   // Set the current edit container as the open container
   openEditContainer = editTaskContainer;
 }
@@ -395,7 +412,7 @@ function editTask(editSelected) {
   
   // Find the task index associated with the clicked edit button
   const index = editSelected.closest('.task-card').dataset.index;
-
+  
   // Find the edit task container related to the task
   const editTaskContainer = document.querySelector(`[data-index="${index}"] .edit-new-task-container`);
 
@@ -406,7 +423,7 @@ function editTask(editSelected) {
   const backButton = editTaskContainer.querySelector('#back-edit-button');
   const saveButton = editTaskContainer.querySelector('#edit-save-button');
   const checkFiles = editTaskContainer.querySelector('#check-files');
-
+  
   // Attach a click event listener to the edit task container
   editTaskContainer.addEventListener('click', (event) => {
     event.stopPropagation(); // Prevent event propagation to parent elements
@@ -421,16 +438,16 @@ function editTask(editSelected) {
       const title = editTaskContainer.querySelector('#edit-title').value;
       const description = editTaskContainer.querySelector(`#edit-description`).value;
       const dueDate = editTaskContainer.querySelector(`#edit-due-date`).value;
-
+      
       // Check if the task at the specified index exists
       if (tasks[index]) {
         // Update task properties
         tasks[index]._title = title;
         tasks[index]._description = description;
         tasks[index]._dateDue = dueDate;
-  
+        
         console.log('Updated Task:', tasks[index]);
-  
+        
         // Update local storage with the modified tasks
         updateLocalStorage('tasks', tasks);
         updateStorage();
@@ -440,12 +457,13 @@ function editTask(editSelected) {
         console.log('Task not found');
       }
     });
-
+    
     // Handle click events for the "Check Files" action
     checkFiles.addEventListener('click', () => {
-      window.location.href = "../HTML/account-page.html";
+      updateLocalStorage('taskIndex', index);
+      window.location.href = "../HTML/files-page.html";
     });
-
+    
     // Handle Enter key events for back and save buttons while preventing propagation
     backButton.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
@@ -469,32 +487,32 @@ function displayFile(){
     const fileDisplayTag = document.createElement('div');
     fileDisplayTag.classList.add('file-display-child');
     fileDisplayTag.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83325 1.83337C3.1764 1.83337 1.83325 3.17652 1.83325 4.83338V17.1667C1.83325 18.8236 3.1764 20.1667 4.83325 20.1667H11.8333V15.5834L11.8332 15.5232V15.5232C11.8332 14.9268 11.8331 14.3831 11.8925 13.9414C11.9578 13.4561 12.1107 12.9471 12.5289 12.529C12.947 12.1109 13.4559 11.9579 13.9413 11.8926C14.383 11.8332 14.9267 11.8333 15.5231 11.8334L15.5833 11.8334H20.1666V4.83337C20.1666 3.17652 18.8234 1.83337 17.1666 1.83337H4.83325ZM19.8576 13.8334H15.5833C14.9068 13.8334 14.5001 13.8355 14.2078 13.8748C14.0733 13.8929 14.004 13.9144 13.9708 13.9281C13.9465 13.9381 13.9433 13.9428 13.9431 13.9432L13.9431 13.9432L13.9431 13.9432C13.9427 13.9435 13.938 13.9466 13.9279 13.9709C13.9143 14.0041 13.8927 14.0735 13.8747 14.2079C13.8354 14.5002 13.8333 14.9069 13.8333 15.5834V19.8578C14.1251 19.714 14.3942 19.5224 14.6286 19.288L19.2879 14.6287C19.5223 14.3943 19.7139 14.1252 19.8576 13.8334Z" fill="white"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.83325 1.83337C3.1764 1.83337 1.83325 3.17652 1.83325 4.83338V17.1667C1.83325 18.8236 3.1764 20.1667 4.83325 20.1667H11.8333V15.5834L11.8332 15.5232V15.5232C11.8332 14.9268 11.8331 14.3831 11.8925 13.9414C11.9578 13.4561 12.1107 12.9471 12.5289 12.529C12.947 12.1109 13.4559 11.9579 13.9413 11.8926C14.383 11.8332 14.9267 11.8333 15.5231 11.8334L15.5833 11.8334H20.1666V4.83337C20.1666 3.17652 18.8234 1.83337 17.1666 1.83337H4.83325ZM19.8576 13.8334H15.5833C14.9068 13.8334 14.5001 13.8355 14.2078 13.8748C14.0733 13.8929 14.004 13.9144 13.9708 13.9281C13.9465 13.9381 13.9433 13.9428 13.9431 13.9432L13.9431 13.9432L13.9431 13.9432C13.9427 13.9435 13.938 13.9466 13.9279 13.9709C13.9143 14.0041 13.8927 14.0735 13.8747 14.2079C13.8354 14.5002 13.8333 14.9069 13.8333 15.5834V19.8578C14.1251 19.714 14.3942 19.5224 14.6286 19.288L19.2879 14.6287C19.5223 14.3943 19.7139 14.1252 19.8576 13.8334Z" fill="white"/>
       </svg>
       <div class = "filename">${truncateText(file.name)}</div>
       <svg class = "remove-file" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M19 12C19 16.9706 14.9706 21 10 21C5.02944 21 1 16.9706 1 12C1 7.02944 5.02944 3 10 3C14.9706 3 19 7.02944 19 12ZM5.29289 16.7071C4.90237 16.3166 4.90237 15.6834 5.29289 15.2929L8.58579 12L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L11.4142 12L14.7071 15.2929C15.0976 15.6834 15.0976 16.3166 14.7071 16.7071C14.3166 17.0976 13.6834 17.0976 13.2929 16.7071L10 13.4142L6.70711 16.7071C6.31658 17.0976 5.68342 17.0976 5.29289 16.7071Z" fill="#FF5C00"/>
       </svg>
-    `;
-
-  filesContainer.append(fileDisplayTag);
-})
-
-}
-
- // Use event delegation to handle remove file clicks
-filesContainer.addEventListener('click', (event) => {
-  const files = JSON.parse(localStorage.getItem('files'));
-  const removeFile = event.target.closest('.remove-file');
+      `;
+      
+      filesContainer.append(fileDisplayTag);
+    })
+    
+  }
   
-  if (removeFile) {
+  // Use event delegation to handle remove file clicks
+  filesContainer.addEventListener('click', (event) => {
+    const files = JSON.parse(localStorage.getItem('files'));
+    const removeFile = event.target.closest('.remove-file');
+    
+    if (removeFile) {
     // Find the index of the clicked remove file button's parent element within the files container
     const index = Array.from(filesContainer.children).indexOf(removeFile.parentElement);
     
     // Remove the file at the specified index from the files array
     files.splice(index, 1);
-
+    
     // Update the local storage with the modified files array
     updateLocalStorage('files', files);
 
@@ -503,23 +521,11 @@ filesContainer.addEventListener('click', (event) => {
   }
 });
 
-function truncateText(string){
-  //the maximum length of characters
-  const maxlength = 25;
-  //gets the length of the argument and loops through it until a specified max length
-  if (string.length > maxlength) {
-    //return the truncated string
-    return string.substring(0, maxlength) + "...";
-  } else {
-    //if the string is less than 25 character, it can be displayed in the task card without being truncated
-    return string;
-  }
-}
 
 /**
  * Get the current date in a specific format.
  * @returns {string} The current date in the specified format (e.g., "October 19, 2023").
- */
+*/
 function getCurrentDate() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' }; // Date format options
   const currentDate = new Date(); // Create a new Date object
@@ -534,20 +540,6 @@ function clearInputField() {
   document.getElementById('due-date').value = '';
 }
 
-function convertDateToStringFormat(dateString){
-  //get the date set by the user
-  const due_dateTemplate = new Date(dateString); //Get the input due date
-  const option = {year: 'numeric', month: 'long', day: 'numeric'}; //format option 
-
-  //a variable that will contain the formatted date
-  let due_formattedDate;
-
-  //isNan is used to check if a variable is a number. It returns true is yes. Since the condition is inverted, the condition is true of the NaN is false. It verifies the date as a string 
-  if(!isNaN(due_dateTemplate)){
-    //convert the string to numeric format.
-    return due_formattedDate = due_dateTemplate.toLocaleDateString(undefined, option); 
-  }else return due_formattedDate = '';
-}
 
 //Set the tasks for the current user by updating the 'tasks' key in local storage.
 function setTasks() {
@@ -591,7 +583,7 @@ function displayUser() {
 
   // Find the current user based on the user index
   const currentUser = users[userIndex];
-
+  console.log(currentUser)
   // Find the elements to display username and profession
   const username = document.querySelector('.username-profession-block #username');
   const profession = document.querySelector('.username-profession-block #profession');
