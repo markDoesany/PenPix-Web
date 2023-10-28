@@ -45,7 +45,7 @@ newAddTask.addEventListener('click', (event)=> {
   localStorage.removeItem('files');
   newTaskWindowOpen = true;
   createTaskContainer.style.display = 'flex'; //display the create task container
-  //setBlurBackground();
+  setBlurBackground();
 })
 
 
