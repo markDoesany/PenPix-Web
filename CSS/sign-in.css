@@ -11,7 +11,6 @@
   justify-content: center;
 }
 .sign-in-form{
-  width: 500px;
   height: auto;
   border-radius: 15px;
   border: 2px solid var(--light-green);
@@ -21,6 +20,8 @@
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .sign-in-container h1{
   margin-bottom: 0;
@@ -84,8 +85,10 @@
 }
 .to-sign-in-container{
   margin-top: 15px;
-  width: 500px;
   height: 80px;
+  width: 300px;
+  margin-left: 1rem;
+  margin-right: 1rem;
   border-radius: 10px;
   border: 2px solid var(--light-green);
   display: flex;
@@ -118,16 +121,17 @@
 .more-container{
   margin-top: 3rem;
   display: flex;
+  justify-content: flex-start;
   column-gap: 4rem;
 }
-.more-container li, .more-container a{
+.more-container a{
   list-style: none;
   text-decoration: none;
   color: var(--light-green);
   font-size: .8rem;
 }
 .successful-notification-block{
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;

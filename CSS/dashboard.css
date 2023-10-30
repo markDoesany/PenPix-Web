@@ -9,15 +9,7 @@
   background-color:hsla(0, 0%, 85%, 0.5);
 }
 main{
-  position: relative;
-  margin-left: 90px;
-  margin-top: 20px;
-  width: 91%;
-  height: 85vh;
-  max-height: auto;
-  display: flex;
-  column-gap: 2.2rem;
-  flex-wrap: wrap;
+  width: 100%;
 }
 .new-add-task{
   height: 200px;
@@ -177,9 +169,11 @@ main{
 .task-container{
   display: flex;
   flex-wrap: wrap;
-  column-gap: 3rem;
-  row-gap: 2.2rem;
-  margin-left: 1rem;
+  column-gap: 1.5rem;
+  padding-top: 1rem;
+  padding-left: 6.5rem;
+  row-gap: 1.5rem;
+  width: 100%;
 }
 .task-card{
   position: relative;
