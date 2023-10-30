@@ -1,3 +1,6 @@
+body{
+  overflow-x: hidden;
+}
 .dashboard-block{
   border-radius: 0;
   background-color: var(--white-color);
@@ -300,6 +303,7 @@ main{
 .edit-new-task-container .files-container a{
   text-decoration: none;
   color: var(--dark-black);
+  user-select: none;
 }
 .edit-new-task-container .files-container p{
   margin-top: 0;
@@ -308,6 +312,7 @@ main{
   border-radius: 10px;
   background-color: #222629;
   color: var(--white-color);
+  user-select: none;
 }
 .edit-new-task-container .files-container p:hover{
   background-color: transparent;

@@ -26,6 +26,7 @@ header{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .sign-container{
   padding-top: .5rem;
@@ -40,14 +41,12 @@ header{
   font-size: 2rem;
   font-weight: 800;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
 }
 .select-sign-in, .select-sign-up{
   padding: .5rem 1.2rem .5rem 1.2rem;
   color: var(--white-color);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
 }
 .select-sign-up{
   border-radius: 10px;
@@ -165,4 +164,13 @@ header{
 }
 footer{
   background-color: var(--dark-black);
+}
+@media screen and (max-width: 475px){
+  .top-container{
+    padding-left: .5rem;
+  }
+  .select-sign-in{
+    display: none;
+  }
+
 }

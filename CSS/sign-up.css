@@ -6,7 +6,6 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 1rem;
 }
 .logo{
   color: var(--white-color);
@@ -97,9 +96,9 @@ header{
 #sign-up{
   margin-top: 1.2rem;
   align-self: center;
-  font-size: 1.2rem;
+  font-size: 100%;
   font-weight: 600;
-  width: 25%;
+  width: 30%;
   height: 2.4rem;
   border-radius: 10px;
   background-color: var(--dark-green);
@@ -132,4 +131,10 @@ header{
   font-weight: 500;
   font-size: 1.2rem;
   display: none;
+}
+
+@media (max-width: 475px) {
+  header{
+    flex-direction: column;
+  }
 }

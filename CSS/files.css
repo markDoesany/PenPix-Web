@@ -164,7 +164,6 @@ hr{
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 40%;
   height: auto;
   background-color: var(--lighter-grey);
   border-radius: 20px;
