@@ -5,7 +5,7 @@
 }
 .files-page-header{
   background-color: var(--dark-black);
-  height: 60px;
+  height: auto;
 }
 .files-page-header ul{
   display: flex;
@@ -122,7 +122,7 @@ main h1{
 .table-row-data:hover svg{
   display: flex;
 }
-.table-row-data p, .table-row-data svg{
+.table-row-data p{
   margin: 0;
   max-width: 90%;
   height: auto;
@@ -131,11 +131,16 @@ main h1{
   text-wrap: wrap;
   overflow: hidden;
 }
+.table-row-data svg{
+  position: absolute;
+  right: 0;
+  width: auto;
+  height: auto;
+  padding-right: 1rem;
+  display: none;
+}
 .table-row-data p:nth-child(3){
   padding-left: 0;
-}
-.table-row-data svg{
-  display: none ;
 }
 .grade{
   font-size: 1.2rem;
@@ -151,15 +156,16 @@ hr{
   color: rgba(196, 196, 196, 0.70);;
 }
 .confirm-files-removal{
-  position: absolute;
+  position:fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   width: 40%;
-  height: 200px;
+  height: auto;
   background-color: var(--lighter-grey);
   border-radius: 20px;
   box-shadow: 2px 2px 5px var(--lighter-grey);
@@ -185,7 +191,6 @@ hr{
   width: 60%;
 }
 .prompt-buttons{
-  position: absolute;
   display: flex;
   justify-content: center;
   bottom: 0;
@@ -340,6 +345,17 @@ aside a:hover{
 .export-grade-book-button:hover{
   box-shadow: 2px 2px 5px 0 var(--lighter-grey);
 }
+@media screen and (max-width: 375px){
+  .confirm-files-removal label{
+    font-size: 1rem;
+   }
+   .confirm-files-removal h5{
+    font-size: .5rem;
+   }
+   .prompt-buttons button{
+    font-size: 1rem;
+   }
+}
 @media screen and (max-width: 475px){
   aside{
     position: relative;
@@ -355,4 +371,34 @@ aside a:hover{
   .files-block, .table-column-header{
     width: 95%;
   }
+  .table-row-data input, .table-row-data{
+    font-size: 1rem;
+  }
+  .table-row-data svg{
+    padding-right: 0;
+  }
+}
+@media  screen and (max-width: 640px) {
+  .table-row-data{
+    font-size: 1.0rem;
+  }
+  .table-row-data input{
+    font-size: 1rem;
+    width: 30px;
+  }
+  .table-row-data svg{
+    height: 25px;
+    padding-right: .5rem;
+  }
+}
+@media  screen and (max-width: 767px) {
+ .confirm-files-removal label{
+  font-size: 2rem;
+ }
+ .confirm-files-removal h5{
+  font-size: .8rem;
+ }
+ .prompt-buttons button{
+  font-size: 1.5rem;
+ }
 }

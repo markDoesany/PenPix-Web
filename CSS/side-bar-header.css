@@ -5,6 +5,7 @@ header{
   padding-right: 30px;
   display: flex;
   justify-content: space-between;
+  column-gap: 2rem;
 }
 .user-quick-menu{
   display: flex;
@@ -77,6 +78,7 @@ h2{
   align-items: center;
   row-gap: 2rem;
   background-color: #222629;
+  z-index: 200;
 }
 .side-menu-nav a{
   text-decoration: none;
