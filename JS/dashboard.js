@@ -96,6 +96,7 @@ function removeBlurBackground(){
   document.querySelector('nav').style.filter = "none";
   document.querySelector('.task-container').style.filter = "none";
 }
+
 // Function to create a new task object
 function createTask(title, description, currentDate, dueDate, files) {
   const newTask = new TaskManagement();
