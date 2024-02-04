@@ -590,7 +590,7 @@ function displayUser() {
   const profession = document.querySelector('.username-profession-block #profession');
 
   // Set the text content of the username element to the user's full name
-  username.textContent = `${currentUser._firstname} ${currentUser._lastname}`;
+  username.textContent = `${currentUser.firstname} ${currentUser.lastname}`;
   
   // Set the text content of the profession element to the user's profession or an empty string
   profession.textContent = currentUser._profession || '';
